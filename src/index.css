@@ -8,35 +8,70 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Pastel color system for POS */
+    --background: 220 20% 98%;
+    --foreground: 225 15% 25%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 225 15% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 225 15% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Coral Pink */
+    --primary: 351 83% 75%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 351 83% 70%;
+    --primary-light: 351 83% 90%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Sky Blue */
+    --secondary: 200 80% 85%;
+    --secondary-foreground: 200 30% 20%;
+    --secondary-hover: 200 80% 80%;
+    --secondary-light: 200 80% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Accent - Mint Green */
+    --accent: 140 65% 80%;
+    --accent-foreground: 140 30% 15%;
+    --accent-hover: 140 65% 75%;
+    --accent-light: 140 65% 95%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Muted - Lavender */
+    --muted: 260 40% 90%;
+    --muted-foreground: 260 15% 45%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Warning - Soft Yellow */
+    --warning: 45 85% 80%;
+    --warning-foreground: 45 30% 20%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Success - Soft Green */
+    --success: 120 60% 75%;
+    --success-foreground: 120 30% 15%;
+
+    --destructive: 0 70% 70%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 92%;
+    --ring: 351 83% 75%;
 
     --radius: 0.5rem;
+
+    /* Gradients - Soft and elegant */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-hover)));
+    --gradient-secondary: linear-gradient(135deg, hsl(var(--secondary)), hsl(var(--secondary-hover)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-hover)));
+    --gradient-pastel: linear-gradient(135deg, hsl(var(--primary-light)), hsl(var(--secondary-light)), hsl(var(--accent-light)));
+    
+    /* Shadows - Soft and colorful */
+    --shadow-primary: 0 4px 20px -4px hsl(var(--primary) / 0.25);
+    --shadow-secondary: 0 4px 20px -4px hsl(var(--secondary) / 0.25);
+    --shadow-accent: 0 4px 20px -4px hsl(var(--accent) / 0.25);
+    --shadow-soft: 0 2px 15px -3px hsl(220 20% 60% / 0.15);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +136,84 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Gradient backgrounds */
+  .bg-gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .bg-gradient-secondary {
+    background: var(--gradient-secondary);
+  }
+  
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+  
+  .bg-gradient-pastel {
+    background: var(--gradient-pastel);
+  }
+
+  /* Shadow utilities */
+  .shadow-primary {
+    box-shadow: var(--shadow-primary);
+  }
+  
+  .shadow-secondary {
+    box-shadow: var(--shadow-secondary);
+  }
+  
+  .shadow-accent {
+    box-shadow: var(--shadow-accent);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* Transition utilities */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Hover effects for POS cards */
+  .pos-card {
+    @apply bg-card border rounded-xl p-4 cursor-pointer transition-smooth hover:shadow-soft hover:scale-105;
+  }
+  
+  .category-card {
+    @apply pos-card bg-gradient-to-br from-primary-light to-secondary-light hover:shadow-primary;
+  }
+  
+  .product-card {
+    @apply pos-card hover:shadow-secondary;
+  }
+  
+  /* Category color variants */
+  .category-primary {
+    @apply bg-primary/20 text-primary;
+  }
+  
+  .category-secondary {
+    @apply bg-secondary/20 text-secondary-foreground;
+  }
+  
+  .category-accent {
+    @apply bg-accent/20 text-accent-foreground;
+  }
+  
+  .category-warning {
+    @apply bg-warning/20 text-warning-foreground;
+  }
+  
+  .cart-item {
+    @apply bg-muted/50 rounded-lg p-3 transition-smooth hover:bg-muted/70;
   }
 }
