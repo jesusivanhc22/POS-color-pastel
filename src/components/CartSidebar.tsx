@@ -24,8 +24,9 @@ export const CartSidebar = ({ isOpen, onClose, items, onUpdateQuantity, onRemove
     // Simular procesamiento
     await new Promise(resolve => setTimeout(resolve, 2000));
     setIsProcessing(false);
-    alert('¡Venta procesada con éxito!');
-    onClose();
+    alert('¡Venta completada exitosamente!');
+    // Limpiar carrito después de la venta
+    window.location.reload();
   };
 
   if (!isOpen) return null;
@@ -44,7 +45,7 @@ export const CartSidebar = ({ isOpen, onClose, items, onUpdateQuantity, onRemove
         <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center space-x-2">
             <ShoppingCart className="h-5 w-5 text-primary" />
-            <h2 className="text-lg font-semibold">Carrito de Compras</h2>
+            <h2 className="text-lg font-semibold">Venta Actual</h2>
             {itemCount > 0 && (
               <Badge variant="default" className="bg-primary">
                 {itemCount}
@@ -61,8 +62,8 @@ export const CartSidebar = ({ isOpen, onClose, items, onUpdateQuantity, onRemove
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <ShoppingCart className="h-12 w-12 text-muted-foreground mb-4" />
-              <p className="text-muted-foreground">Tu carrito está vacío</p>
-              <p className="text-sm text-muted-foreground">Agrega productos para continuar</p>
+              <p className="text-muted-foreground">No hay productos seleccionados</p>
+              <p className="text-sm text-muted-foreground">Selecciona productos para el cliente</p>
             </div>
           ) : (
             <div className="space-y-4">

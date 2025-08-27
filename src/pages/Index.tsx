@@ -79,10 +79,10 @@ const Index = () => {
       <main className="container mx-auto px-6 py-8">
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-2 bg-gradient-primary bg-clip-text text-transparent">
-            Punto de Venta
+            Sistema de Ventas
           </h2>
           <p className="text-muted-foreground">
-            Selecciona una categoría y agrega productos al carrito
+            Selecciona productos para el cliente y procesa la venta
           </p>
         </div>
 
