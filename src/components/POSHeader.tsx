@@ -1,14 +1,8 @@
-import { ShoppingCart, Search, User, Settings } from "lucide-react";
+import { Search, User, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 
-interface POSHeaderProps {
-  cartItemCount: number;
-  onOpenCart: () => void;
-}
-
-export const POSHeader = ({ cartItemCount, onOpenCart }: POSHeaderProps) => {
+export const POSHeader = () => {
   return (
     <header className="bg-card border-b border-border px-6 py-4 shadow-soft">
       <div className="flex items-center justify-between">
@@ -26,23 +20,6 @@ export const POSHeader = ({ cartItemCount, onOpenCart }: POSHeaderProps) => {
         </div>
         
         <div className="flex items-center space-x-4">
-          <Button 
-            variant="outline" 
-            size="icon"
-            className="relative hover:bg-secondary/50 transition-smooth"
-            onClick={onOpenCart}
-          >
-            <ShoppingCart className="h-5 w-5" />
-            {cartItemCount > 0 && (
-              <Badge 
-                variant="default" 
-                className="absolute -top-2 -right-2 bg-primary text-primary-foreground min-w-[20px] h-5 flex items-center justify-center text-xs font-bold"
-              >
-                {cartItemCount}
-              </Badge>
-            )}
-          </Button>
-          
           <Button variant="outline" size="icon" className="hover:bg-accent/50 transition-smooth">
             <User className="h-5 w-5" />
           </Button>
